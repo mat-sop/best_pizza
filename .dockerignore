@@ -1,0 +1,6 @@
+.gitignore
+.git/
+.vscode/
+.pythonversion
+*/__pycache__/
+*/db.sqlite3
