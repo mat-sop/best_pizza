@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from pizzas.models import Pizza, Restaurant, Topping
 from pizzas.serializers import (PizzaSerializer, RestaurantSerializer,
@@ -29,3 +31,17 @@ class RestaurantDetail(generics.RetrieveUpdateDestroyAPIView):
 class ToppingList(generics.ListCreateAPIView):
     queryset = Topping.objects.all()
     serializer_class = ToppingSerializer
+
+
+@api_view(['GET'])
+def pizza_vote(request, pk):
+    try:
+        pizza = Pizza.objects.get(pk=pk)
+        pizza.number_of_votes += 1
+        pizza.save()
+    except Pizza.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    return Response(status=status.HTTP_202_ACCEPTED)
+
+
