@@ -35,3 +35,22 @@ class PizzaSerializer(serializers.Serializer):
         pizza.toppings.add(*toppings)
         pizza.save()
         return pizza
+
+    def update(self, instance, validated_data):
+        restaurant_data = validated_data.pop("restaurant")
+        toppings_data = validated_data.pop("toppings")
+
+        instance.name = validated_data.get("name", instance.name)
+        instance.description = validated_data.get("description", instance.description)
+
+        restaurant = instance.restaurant
+        restaurant.name = restaurant_data.get("name", restaurant.name)
+        restaurant.save()
+
+        toppings = []
+        for topping_data in toppings_data:
+            toppings.append(Topping.objects.get_or_create(**topping_data)[0])
+        instance.toppings.set(toppings)
+        instance.save()
+
+        return instance
