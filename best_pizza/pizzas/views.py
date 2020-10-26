@@ -35,7 +35,7 @@ class ToppingList(generics.ListCreateAPIView):
 
 
 @api_view(['GET'])
-def pizza_vote(request, pk, format=None):
+def pizza_vote(request, pk):
     try:
         pizza = Pizza.objects.get(pk=pk)
         pizza.number_of_votes += 1
@@ -47,9 +47,10 @@ def pizza_vote(request, pk, format=None):
 
 
 @api_view(['GET'])
-def api_root(request, format=None):
+def api_root(request):
     return Response({
-        'pizzas': reverse('pizza-list', request=request, format=format),
-        'restaurants': reverse('restaurant-list', request=request, format=format),
-        'toppings': reverse('topping-list', request=request, format=format)
+        'pizzas': reverse('pizza-list', request=request),
+        'restaurants': reverse('restaurant-list', request=request),
+        'toppings': reverse('topping-list', request=request),
+        'swagger-ui': reverse('schema-swagger-ui', request=request)
     })

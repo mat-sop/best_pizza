@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'pizzas.apps.PizzasConfig'
+    'pizzas.apps.PizzasConfig',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
