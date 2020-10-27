@@ -8,6 +8,7 @@ from pizzas import views
 schema_view = get_schema_view(
    openapi.Info(
       title="Best Pizza API",
+      default_version='v1',
    ),
    public=True,
 )
