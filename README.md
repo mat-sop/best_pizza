@@ -1,6 +1,6 @@
 # best_pizza
-Restful API that allows voting for the best pizza. Service is temporarily hosted [here](https://18.184.185.80:8000).
-Swagger docs is available [here](https://18.184.185.80:8000/swagger/)
+Restful API that allows voting for the best pizza. Service is temporarily hosted [here](http://18.184.185.80:8000).
+Swagger docs is available [here](http://18.184.185.80:8000/swagger/)
 
 
 ### Requirements
